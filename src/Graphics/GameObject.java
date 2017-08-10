@@ -8,9 +8,10 @@ public class GameObject {
 	int width;
 	int height;
 	int speed;
+	boolean isAlive;
 
 	public GameObject() {
-
+		isAlive = true;
 	}
 
 	public void update() {
@@ -18,7 +19,7 @@ public class GameObject {
 	}
 
 	public void draw(Graphics g) {
-		g.fillRect(x, y, 75, 75);
 
 	}
+
 }
