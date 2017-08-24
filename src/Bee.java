@@ -10,8 +10,12 @@ public class Bee extends GameObject {
 	int width;
 	int height;
 	int speed;
-
+	boolean up = false;
+	boolean down = false;
+	boolean left = false;
+	boolean right = false;
 	public Bee(int x, int y, int width, int height, int speed) {
+		super();
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -19,9 +23,25 @@ public class Bee extends GameObject {
 		this.speed = speed;
 	}
 
+	
 	public void update() {
-		x = +speed;
+		y+=5;
+		super.update();
+		if(up){
+			y-=15;
+		}
+		if(down){
+			y+=speed;
+		}
+		if(left){
+			x-=speed;
+		}
+		if(right){
+			x+=speed;
+		}
 	}
+
+	
 
 	public void draw(Graphics g) {
 		g.setColor(Color.BLACK);
@@ -29,6 +49,6 @@ public class Bee extends GameObject {
 	}
 
 	public void up() {
-		y = +25;
+		y-=25;
 	}
 }

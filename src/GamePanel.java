@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import Graphics.ObjectManager;
+
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Timer timer;
@@ -26,12 +28,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont;
 	Font startFont;
 	Color flower = new Color(255, 255, 204);
-
+	ObjectManager manager;
+	
 	public GamePanel() {
 		Bee = new Bee(100, 250, 75, 75, 5);
 		timer = new Timer(1000 / 60, this);
 		titleFont = new Font("Arial", Font.PLAIN, 56);
 		startFont = new Font("Arial", Font.PLAIN, 36);
+		manager = new ObjectManager();
+		manager.addObject(Bee);
 		try {
 			GameBee = ImageIO.read(this.getClass().getResourceAsStream("download.png"));
 
@@ -74,6 +79,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, BuzzingBee.WIDTH, BuzzingBee.HEIGHT);
 		Bee.draw(g);
+
 	}
 
 	public void drawEndState(Graphics g) {
@@ -139,8 +145,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			JOptionPane.showMessageDialog(null,
 					"Press the SPACE key to fly your bee. Avoid flying into pipes and the ground.");
 		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			Bee.up();
+		
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			Bee.up=true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			Bee.down=true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			Bee.right=true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			Bee.left=true;
 		}
 
 	}
@@ -150,6 +166,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
 			System.out.println("I work");
+		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			Bee.up=false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			Bee.down=false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			Bee.right=false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			Bee.left=false;
 		}
 	}
 

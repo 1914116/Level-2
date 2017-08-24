@@ -21,5 +21,8 @@ public class GameObject {
 	public void draw(Graphics g) {
 
 	}
-
+	
+	public void up(){
+		y+=5;	
+	}
 }
